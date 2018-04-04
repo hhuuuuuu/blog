@@ -27,8 +27,8 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 
-import { mapState } from 'vuex'
 export default {
     name: 'ArticelList',
     computed: {
@@ -39,6 +39,12 @@ export default {
     },
     data() {
         return {}
+    },
+    methods: {
+        ...mapActions(['setBackground'])
+    },
+    created() {
+        this.setBackground('#000000')
     }
 }
 </script>
@@ -48,6 +54,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 80px;
     .title {
         display: flex;
         justify-content: center;

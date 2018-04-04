@@ -25,7 +25,6 @@ export default {
 <style scoped lang='scss'>
 .home-page {
     background-color: #f6f9fc;
-    padding-top: 80px;
     min-height: 100vh;
     .fade-enter-active,
 .fade-leave-active {

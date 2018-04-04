@@ -6,5 +6,10 @@ export default {
     },
     getter: {},
     mutaion: {},
-    actions: {}
+    actions: {
+        setBackground({ state }, payload) {
+            console.log(payload)
+            state.navStyle.backgroundColor = payload
+        }
+    }
 }
