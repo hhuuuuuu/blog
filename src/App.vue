@@ -25,7 +25,8 @@ p {
 div,
 nav,
 ul,
-li {
+li,
+input {
     box-sizing: border-box;
 }
 

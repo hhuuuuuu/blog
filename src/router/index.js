@@ -4,7 +4,7 @@ import Index from '../page/index.vue'
 import Home from '../page/home.vue'
 import ArticleList from '../page/article-list.vue'
 import ArticleContent from '../page/article-content.vue'
-
+import Write from '../page/write.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -28,6 +28,11 @@ export default new Router({
                     path: 'article/content',
                     name: 'articleContent',
                     component: ArticleContent
+                },
+                {
+                    path: '/write',
+                    name: 'write',
+                    component: Write
                 }
             ]
         }

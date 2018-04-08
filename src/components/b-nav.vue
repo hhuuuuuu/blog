@@ -15,7 +15,7 @@
 
 <script>
 export default {
-    name: 'Nav',
+    name: 'bNav',
     props: {
         navStyle: {
             type: Object
