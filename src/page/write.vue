@@ -18,11 +18,15 @@
                 </b-form-item>
             </b-form>
         </div>
+        <b-upload title='上传封面'
+                  @change="handleCoverFile"></b-upload>
         <div id="main">
             <mavon-editor @save='save'
                           v-model="markdownContent" />
         </div>
-        <b-button @click.native="submit">确定</b-button>
+        <b-upload title='上传附件'
+                  @change="handleFile"></b-upload>
+        <b-button @click="submit">确定</b-button>
     </div>
 
 </template>
@@ -30,10 +34,12 @@
 import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import { markdown } from 'markdown'
+import bUpload from '../components/b-upload'
 export default {
     name: 'Write',
     components: {
-        mavonEditor
+        mavonEditor,
+        bUpload
     },
     data() {
         return {
@@ -49,13 +55,42 @@ export default {
                 title: '',
                 desc: ''
             },
-            markdownContent: ''
+            markdownContent: '',
+            filePaht: '',
+            cover: ''
         }
     },
     methods: {
-        submit() {
-            this.$refs.form.valiate()
-            // markdown.toHTML(this.value)
+        async submit() {
+            if (this.$refs.form.valiate()) {
+                try {
+                    await this.$http.post('/article', {
+                        ...this.forms,
+                        content: markdown.toHTML(this.markdownContent || ''),
+                        file: this.filePaht,
+                        created_at: Date.now(),
+                        cover: this.cover
+                    })
+                    alert('success')
+                    this.init()
+                } catch (e) {
+                    console.log(e)
+                }
+            }
+        },
+        handleFile(filePath) {
+            this.filePaht = filePath
+        },
+        handleCoverFile(filePath) {
+            this.cover = filePath
+        },
+        init() {
+            this.forms = {
+                title: '',
+                desc: ''
+            }
+            this.markdownContent = ''
+            localStorage.removeItem('markdownContent')
         },
         save() {
             localStorage.setItem('markdownContent', this.markdownContent)
@@ -75,8 +110,8 @@ export default {
     align-items: flex-start;
     flex-direction: column;
     margin: 0 auto;
-    #main{
-        margin-bottom: 20px
+    #main {
+        margin-bottom: 20px;
     }
 }
 </style>

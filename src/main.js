@@ -11,6 +11,7 @@ import bForm from './components/b-form.vue'
 import bButton from './components/b-button.vue'
 import store from './store/index'
 import bus from './event'
+import axios from './axios'
 Vue.config.productionTip = false
 Vue.component('b-loading', Bloading)
 Vue.component('b-input', bInput)
@@ -20,6 +21,7 @@ Vue.component('b-button', bButton)
 let MyPlugin = {}
 MyPlugin.install = function() {
     Vue.prototype.$bus = bus
+    Vue.prototype.$http = axios
 }
 Vue.use(MyPlugin)
 /* eslint-disable no-new */

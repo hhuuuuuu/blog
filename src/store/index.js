@@ -5,6 +5,7 @@ import action from './actions'
 import index from './modules/index'
 import home from './modules/home'
 import articleList from './modules/article-list'
+import defaultImg from '../assets/bg.jpg'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -34,7 +35,8 @@ const store = new Vuex.Store({
                 url: '',
                 name: 'HOME6'
             }
-        ]
+        ],
+        defaultImg
     },
     getters: {},
     mutations,

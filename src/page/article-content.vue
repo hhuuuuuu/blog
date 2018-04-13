@@ -122,10 +122,11 @@ import 'github-markdown-css'
 export default {
     name: 'articleContent',
     methods: {
-        ...mapActions(['setBackground'])
+        ...mapActions(['setBackground', 'setArticleId'])
     },
     created() {
         this.setBackground('transparent')
+        this.setArticleId(this.$routes.params.id)
     }
 }
 </script>

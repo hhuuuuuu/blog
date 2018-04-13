@@ -40,11 +40,9 @@ export default {
     },
     methods: {
         handleError(legal) {
-            console.log(legal)
             this.borderColor = legal ? '' : 'red'
         },
         handleChange(e) {
-            console.log(e)
             this.$emit('change', e.target.value)
         }
     },

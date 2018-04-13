@@ -25,12 +25,12 @@ export default new Router({
                     component: ArticleList
                 },
                 {
-                    path: 'article/content',
+                    path: 'article/content/:id',
                     name: 'articleContent',
                     component: ArticleContent
                 },
                 {
-                    path: '/write',
+                    path: 'write',
                     name: 'write',
                     component: Write
                 }

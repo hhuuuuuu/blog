@@ -5,11 +5,14 @@ export default {
         }
     },
     getter: {},
-    mutaion: {},
+    mutations: {
+        backgroundColor(state, payload) {
+            state.backgroundColor = payload
+        }
+    },
     actions: {
-        setBackground({ state }, payload) {
-            console.log(payload)
-            state.navStyle.backgroundColor = payload
+        setBackground({ state, commit }, payload) {
+            commit('backgroundColor', payload)
         }
     }
 }

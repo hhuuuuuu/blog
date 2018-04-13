@@ -11,15 +11,16 @@
              v-show="!loading">
             <div class='item-wrap'
                  v-for='item in articleList'
-                 :key=item.title>
-                <div class='item'>
+                 :key=item.time>
+                <div class='item'
+                     @click="handleItemClick(item._id)">
                     <div class='img-wrap'>
-                        <img :src='item.img'
+                        <img :src="item.cover ? `http://localhost:3030/${item.cover}` : defautlImg"
                              alt="blog">
                     </div>
                     <h2>{{item.title}}</h2>
                     <p>{{item.desc}}</p>
-                    <span>{{item.time}}</span>
+                    <span>{{item.created_at}}</span>
                 </div>
             </div>
         </div>
@@ -34,17 +35,27 @@ export default {
     computed: {
         ...mapState({
             articleList: state => state.articleList.articleList,
-            loading: state => state.articleList.loading
+            loading: state => state.articleList.loading,
+            defautlImg: state => state.defaultImg
         })
     },
     data() {
         return {}
     },
     methods: {
-        ...mapActions(['setBackground'])
+        ...mapActions(['setBackground', 'getArticleList']),
+        handleItemClick(id) {
+            this.$router.push({
+                name: 'articleContent',
+                params: {
+                    id
+                }
+            })
+        }
     },
-    created() {
+    async created() {
         this.setBackground('#000000')
+        this.getArticleList()
     }
 }
 </script>
@@ -73,7 +84,7 @@ export default {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        max-width: 1200px;
+        width: 1200px;
         .item-wrap {
             width: 25%;
             padding: 20px;

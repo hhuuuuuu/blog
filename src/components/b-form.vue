@@ -21,9 +21,14 @@ export default {
     },
     methods: {
         valiate() {
+            let legal = true
             this.itemList.forEach(item => {
-                item.valiate(this.rules[item.prop], this.forms[item.prop])
+                let ret = item.valiate(this.rules[item.prop], this.forms[item.prop])
+                if (!ret) {
+                    legal = false
+                }
             })
+            return legal
         }
     },
     created() {
@@ -36,7 +41,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.b-form{
+.b-form {
     display: flex;
     flex-direction: column;
 }

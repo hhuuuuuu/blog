@@ -48,20 +48,22 @@ export default {
     },
     methods: {
         valiate(rule, value) {
+            let legal
             if (!value) {
+                legal = false
                 this.error = {
                     show: true,
                     message: rule.message || 'error'
                 }
-
-                console.log(this.$children[0].handleError(false))
+                this.$children[0].handleError(legal)
             } else {
+                legal = true
                 this.error = {
                     show: false
                 }
-
-                console.log(this.$children[0].handleError(true))
+                this.$children[0].handleError(legal)
             }
+            return legal
         }
     },
     mounted() {

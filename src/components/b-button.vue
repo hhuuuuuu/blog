@@ -1,10 +1,20 @@
 <template>
     <div class='b-button'>
-        <button>
+        <button @click='handleClick'>
             <slot></slot>
         </button>
     </div>
 </template>
+<script>
+export default {
+    name: 'bUpload',
+    methods: {
+        handleClick(e) {
+            this.$emit('click', e)
+        }
+    }
+}
+</script>
 <style lang='scss' scoped>
 .b-button {
     button {
